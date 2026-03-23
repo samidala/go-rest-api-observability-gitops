@@ -1,0 +1,8 @@
+prometheus-node-exporter:
+
+  extraArgs:
+    - --no-collector.arp
+    - --no-collector.ipvs
+
+  hostRootFsMount:
+    enabled: false

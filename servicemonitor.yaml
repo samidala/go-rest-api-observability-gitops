@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+
+metadata:
+  name: go-rest-api
+  namespace: monitoring
+
+  labels:
+    release: prometheus   # FIXED (lowercase)
+    app.kubernetes.io/instance: prometheus
+
+spec:
+  selector:
+    matchLabels:
+      app: go-rest-api
+
+  namespaceSelector:
+    matchNames:
+      - default
+
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s
